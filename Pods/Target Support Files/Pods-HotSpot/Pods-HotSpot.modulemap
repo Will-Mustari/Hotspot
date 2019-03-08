@@ -1,0 +1,6 @@
+framework module Pods_HotSpot {
+  umbrella header "Pods-HotSpot-umbrella.h"
+
+  export *
+  module * { export * }
+}
