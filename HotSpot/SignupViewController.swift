@@ -10,6 +10,11 @@ import UIKit
 
 class SignupViewController: UIViewController {
 
+    @IBOutlet weak var userEmail: UITextField!
+    @IBOutlet weak var userPassword: UITextField!
+    @IBOutlet weak var userPasswordConfirm: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +22,15 @@ class SignupViewController: UIViewController {
     }
     
 
+    /*
+     * ACTION - press of signup button
+     * Calls Firebase Auth to create a new user
+     * Checks for valid email
+     * Check passwords match
+     */
+    @IBAction func signupButtonPress(_ sender: Any) {
+        //TODO
+    }
     /*
     // MARK: - Navigation
 

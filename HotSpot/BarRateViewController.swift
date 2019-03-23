@@ -7,16 +7,33 @@
 //
 
 import UIKit
+import Firebase
+//TODO must use podfile to also import FirebaseDatabase
+//import FirebaseDatabase
 
 class BarRateViewController: UIViewController {
+    
+    var barName = ""
 
+    @IBOutlet weak var barNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //Set label to name given from previous view
+        barNameLabel.text = barName;
     }
     
-
+    /*
+     * ACTION - press submit rating button
+     * Creates barRating object and sends the information
+     * to Firebase server.
+     */
+    @IBAction func submitRatingButton(_ sender: UIButton) {
+        //TODO
+        
+    }
+    
     /*
     // MARK: - Navigation
 
