@@ -20,6 +20,9 @@
 		54E9BFD122332B51000F5D2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E9BFD022332B51000F5D2A /* Assets.xcassets */; };
 		54E9BFD422332B51000F5D2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54E9BFD222332B51000F5D2A /* LaunchScreen.storyboard */; };
 		5527A0422F7F29584B201FB9 /* Pods_HotSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06F15EB21A80CC32F88BC5F /* Pods_HotSpot.framework */; };
+		ADAE31A02246F31F0056AE67 /* BarInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAE319F2246F31F0056AE67 /* BarInformation.swift */; };
+		ADAE31A22246F4AC0056AE67 /* ReviewInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAE31A12246F4AC0056AE67 /* ReviewInformation.swift */; };
+		ADAE31A42246F57F0056AE67 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAE31A32246F57F0056AE67 /* UserInformation.swift */; };
 		B5FF630522332D8D0002E34A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5FF630422332D8D0002E34A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +43,9 @@
 		54E9BFD322332B51000F5D2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54E9BFD522332B51000F5D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		662A3F9875D5779286E6F7D0 /* Pods-HotSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotSpot.release.xcconfig"; path = "Target Support Files/Pods-HotSpot/Pods-HotSpot.release.xcconfig"; sourceTree = "<group>"; };
+		ADAE319F2246F31F0056AE67 /* BarInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarInformation.swift; sourceTree = "<group>"; };
+		ADAE31A12246F4AC0056AE67 /* ReviewInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInformation.swift; sourceTree = "<group>"; };
+		ADAE31A32246F57F0056AE67 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		B5FF630422332D8D0002E34A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F06F15EB21A80CC32F88BC5F /* Pods_HotSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HotSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,14 +85,10 @@
 			children = (
 				54E9BFC922332B50000F5D2A /* AppDelegate.swift */,
 				54E9BFCD22332B50000F5D2A /* Main.storyboard */,
+				ADAE319C2246EFD50056AE67 /* Models */,
+				ADAE319D2246EFDE0056AE67 /* Views */,
+				ADAE319E2246EFEA0056AE67 /* Controllers */,
 				54E9BFCB22332B50000F5D2A /* ViewController.swift */,
-				0D1C15912246CD400003CE5D /* SignupViewController.swift */,
-				0D1C15932246CD6F0003CE5D /* LoginViewController.swift */,
-				0D1C15952246CD970003CE5D /* HeatmapViewController.swift */,
-				0D1C15972246CDBB0003CE5D /* CategorizedFeedViewController.swift */,
-				0D1C15992246CDE90003CE5D /* UserProfileViewController.swift */,
-				0D1C159B2246CED00003CE5D /* BarSelectViewController.swift */,
-				0D1C159D2246CF580003CE5D /* BarRateViewController.swift */,
 				54E9BFD022332B51000F5D2A /* Assets.xcassets */,
 				54E9BFD222332B51000F5D2A /* LaunchScreen.storyboard */,
 				54E9BFD522332B51000F5D2A /* Info.plist */,
@@ -101,6 +103,37 @@
 				F06F15EB21A80CC32F88BC5F /* Pods_HotSpot.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADAE319C2246EFD50056AE67 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ADAE319F2246F31F0056AE67 /* BarInformation.swift */,
+				ADAE31A12246F4AC0056AE67 /* ReviewInformation.swift */,
+				ADAE31A32246F57F0056AE67 /* UserInformation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ADAE319D2246EFDE0056AE67 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ADAE319E2246EFEA0056AE67 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0D1C15912246CD400003CE5D /* SignupViewController.swift */,
+				0D1C15932246CD6F0003CE5D /* LoginViewController.swift */,
+				0D1C15952246CD970003CE5D /* HeatmapViewController.swift */,
+				0D1C15972246CDBB0003CE5D /* CategorizedFeedViewController.swift */,
+				0D1C15992246CDE90003CE5D /* UserProfileViewController.swift */,
+				0D1C159B2246CED00003CE5D /* BarSelectViewController.swift */,
+				0D1C159D2246CF580003CE5D /* BarRateViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E07449EC3B1BF9306873BC33 /* Pods */ = {
@@ -237,7 +270,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADAE31A02246F31F0056AE67 /* BarInformation.swift in Sources */,
+				ADAE31A42246F57F0056AE67 /* UserInformation.swift in Sources */,
 				0D1C159E2246CF580003CE5D /* BarRateViewController.swift in Sources */,
+				ADAE31A22246F4AC0056AE67 /* ReviewInformation.swift in Sources */,
 				0D1C15962246CD970003CE5D /* HeatmapViewController.swift in Sources */,
 				0D1C15942246CD6F0003CE5D /* LoginViewController.swift in Sources */,
 				0D1C159A2246CDE90003CE5D /* UserProfileViewController.swift in Sources */,
