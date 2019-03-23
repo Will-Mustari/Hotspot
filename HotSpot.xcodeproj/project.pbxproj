@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D1C15922246CD400003CE5D /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C15912246CD400003CE5D /* SignupViewController.swift */; };
+		0D1C15942246CD6F0003CE5D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C15932246CD6F0003CE5D /* LoginViewController.swift */; };
+		0D1C15962246CD970003CE5D /* HeatmapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C15952246CD970003CE5D /* HeatmapViewController.swift */; };
+		0D1C15982246CDBB0003CE5D /* CategorizedFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C15972246CDBB0003CE5D /* CategorizedFeedViewController.swift */; };
+		0D1C159A2246CDE90003CE5D /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C15992246CDE90003CE5D /* UserProfileViewController.swift */; };
+		0D1C159C2246CED00003CE5D /* BarSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C159B2246CED00003CE5D /* BarSelectViewController.swift */; };
+		0D1C159E2246CF580003CE5D /* BarRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C159D2246CF580003CE5D /* BarRateViewController.swift */; };
 		54E9BFCA22332B50000F5D2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E9BFC922332B50000F5D2A /* AppDelegate.swift */; };
 		54E9BFCC22332B50000F5D2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E9BFCB22332B50000F5D2A /* ViewController.swift */; };
 		54E9BFCF22332B50000F5D2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54E9BFCD22332B50000F5D2A /* Main.storyboard */; };
@@ -17,6 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D1C15912246CD400003CE5D /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		0D1C15932246CD6F0003CE5D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0D1C15952246CD970003CE5D /* HeatmapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatmapViewController.swift; sourceTree = "<group>"; };
+		0D1C15972246CDBB0003CE5D /* CategorizedFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedFeedViewController.swift; sourceTree = "<group>"; };
+		0D1C15992246CDE90003CE5D /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		0D1C159B2246CED00003CE5D /* BarSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarSelectViewController.swift; sourceTree = "<group>"; };
+		0D1C159D2246CF580003CE5D /* BarRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarRateViewController.swift; sourceTree = "<group>"; };
 		3B36A91847DAF9A3FE27563F /* Pods-HotSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotSpot.debug.xcconfig"; path = "Target Support Files/Pods-HotSpot/Pods-HotSpot.debug.xcconfig"; sourceTree = "<group>"; };
 		54E9BFC622332B50000F5D2A /* HotSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54E9BFC922332B50000F5D2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,8 +78,15 @@
 			isa = PBXGroup;
 			children = (
 				54E9BFC922332B50000F5D2A /* AppDelegate.swift */,
-				54E9BFCB22332B50000F5D2A /* ViewController.swift */,
 				54E9BFCD22332B50000F5D2A /* Main.storyboard */,
+				54E9BFCB22332B50000F5D2A /* ViewController.swift */,
+				0D1C15912246CD400003CE5D /* SignupViewController.swift */,
+				0D1C15932246CD6F0003CE5D /* LoginViewController.swift */,
+				0D1C15952246CD970003CE5D /* HeatmapViewController.swift */,
+				0D1C15972246CDBB0003CE5D /* CategorizedFeedViewController.swift */,
+				0D1C15992246CDE90003CE5D /* UserProfileViewController.swift */,
+				0D1C159B2246CED00003CE5D /* BarSelectViewController.swift */,
+				0D1C159D2246CF580003CE5D /* BarRateViewController.swift */,
 				54E9BFD022332B51000F5D2A /* Assets.xcassets */,
 				54E9BFD222332B51000F5D2A /* LaunchScreen.storyboard */,
 				54E9BFD522332B51000F5D2A /* Info.plist */,
@@ -88,7 +109,6 @@
 				3B36A91847DAF9A3FE27563F /* Pods-HotSpot.debug.xcconfig */,
 				662A3F9875D5779286E6F7D0 /* Pods-HotSpot.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -217,6 +237,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D1C159E2246CF580003CE5D /* BarRateViewController.swift in Sources */,
+				0D1C15962246CD970003CE5D /* HeatmapViewController.swift in Sources */,
+				0D1C15942246CD6F0003CE5D /* LoginViewController.swift in Sources */,
+				0D1C159A2246CDE90003CE5D /* UserProfileViewController.swift in Sources */,
+				0D1C15982246CDBB0003CE5D /* CategorizedFeedViewController.swift in Sources */,
+				0D1C159C2246CED00003CE5D /* BarSelectViewController.swift in Sources */,
+				0D1C15922246CD400003CE5D /* SignupViewController.swift in Sources */,
 				54E9BFCC22332B50000F5D2A /* ViewController.swift in Sources */,
 				54E9BFCA22332B50000F5D2A /* AppDelegate.swift in Sources */,
 			);
