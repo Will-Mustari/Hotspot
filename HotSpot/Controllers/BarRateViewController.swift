@@ -11,19 +11,33 @@ import Firebase
 //TODO must use podfile to also import FirebaseDatabase
 //import FirebaseDatabase
 
-class BarRateViewController: UIViewController {
+class BarRateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+
+    
     
     var barName = ""
-
+    //Vibe list
+    let array:[String] = ["CheapDrinks", "Chill", "DJ", "Party"];
     @IBOutlet weak var barNameLabel: UILabel!
+    @IBOutlet weak var ratingValueLabel: UILabel!
+    @IBOutlet weak var ratingValue: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateRatingLabel()
         //Set label to name given from previous view
         barNameLabel.text = barName;
     }
     
+    @IBAction func ratingValueChanged(_ sender: UISlider) {
+        updateRatingLabel()
+    }
+    
+    func updateRatingLabel() {
+        let value = ratingValue.value;
+        let stringValue = NSString(format: "%.2f", value);
+        ratingValueLabel.text = "Rating: " + (stringValue as String) + " out of 5";
+    }
     /*
      * ACTION - press submit rating button
      * Creates barRating object and sends the information
@@ -34,6 +48,18 @@ class BarRateViewController: UIViewController {
         
     }
     
+    
+    //number of views
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return array.count;
+    }
+    
+    //Populate cells
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VibesCollectionViewCell;
+        cell.imageView.image = UIImage(named: array[indexPath.row] + ".jpg");
+        return cell;
+    }
     /*
     // MARK: - Navigation
 
