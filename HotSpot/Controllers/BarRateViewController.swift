@@ -21,12 +21,25 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var ratingValueLabel: UILabel!
     @IBOutlet weak var ratingValue: UISlider!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateRatingLabel()
         //Set label to name given from previous view
         barNameLabel.text = barName;
+        
+        //collectionview layout settings
+        let itemSize = UIScreen.main.bounds.width/3 - 3
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0);
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 3
+        
+        collectionView.collectionViewLayout = layout
     }
     
     @IBAction func ratingValueChanged(_ sender: UISlider) {
@@ -57,7 +70,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     //Populate cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VibesCollectionViewCell;
-        cell.imageView.image = UIImage(named: array[indexPath.row] + ".jpg");
+        cell.cellImage.image = UIImage(named: array[indexPath.row] + ".jpg");
         return cell;
     }
     /*

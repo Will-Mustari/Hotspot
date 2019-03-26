@@ -10,5 +10,5 @@ import UIKit
 
 class VibesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var cellImage: UIImageView!
 }
