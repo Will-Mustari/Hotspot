@@ -27,38 +27,69 @@ class SignupViewController: UIViewController {
      * Check passwords match
      */
     @IBAction func signupButtonPress(_ sender: Any) {
-        //Checks if fields are empty
+        //Get user input and catch if fields are empty
         guard let email = userEmail.text else { return }
         guard let password = userPassword.text else { return }
         guard let passwordDup = userPasswordConfirm.text else { return }
         
+        //Catch if invalid email
         if isValidEmail(email: email) == false {
-            //TODO: SHOW USER ERROR MESSAGE HERE
+            self.userEmail.layer.borderColor = UIColor.red.cgColor
+            self.userEmail.layer.borderWidth = 1.0
+            
+            ////////TODO: ADD ERROR MESSAGE POPUP/////////
+            
             print("Bad email!")
             return
-        }
-        
-        if password == passwordDup {
-            Auth.auth().createUser(withEmail: email, password: password) { user, error in
-                if error == nil && user != nil {
-                    //TODO: SHOW USER SUCCESS MESSAGE HERE
-                    print("User created!")
-                    self.performSegue(withIdentifier: "signupToMainMenu", sender: self)
-                } else {
-                    //TODO: SHOW USER ERROR MESSAGE HERE
-                    print("Error creating user: \(error!.localizedDescription)")
-                }
-            }
         } else {
-            //TODO: SHOW USER ERROR MESSAGE HERE
+            userEmail.layer.borderColor = UIColor.clear.cgColor
+        }
+
+        //Catch if password mismatch
+        if password != passwordDup {
+            userPassword.layer.borderColor = UIColor.red.cgColor
+            userPassword.layer.borderWidth = 1.0
+            userPasswordConfirm.layer.borderColor = UIColor.red.cgColor
+            userPasswordConfirm.layer.borderWidth = 1.0
+            
+            ///////TODO: ADD ERROR MESSAGE POPUP/////////
+            
             print("Passwords do not match!")
             return
+        } else {
+            userPassword.layer.borderColor = UIColor.clear.cgColor
+            userPasswordConfirm.layer.borderColor = UIColor.clear.cgColor
+        }
+        
+        //Create user if auth successful, otherwise throw error
+        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            if error == nil && user != nil {
+                self.userPassword.layer.borderColor = UIColor.clear.cgColor
+                self.userPasswordConfirm.layer.borderColor = UIColor.clear.cgColor
+                
+                ///////TODO: ADD SUCCESS MESSAGE POPUP////////
+                
+                print("User created!")
+                self.performSegue(withIdentifier: "signupToMainMenu", sender: self)
+            } else {
+                self.userPassword.layer.borderColor = UIColor.red.cgColor
+                self.userPassword.layer.borderWidth = 1.0
+                self.userPasswordConfirm.layer.borderColor = UIColor.red.cgColor
+                self.userPasswordConfirm.layer.borderWidth = 1.0
+                
+                ////////TODO: ADD ERROR MESSAGE POPUP////////
+                
+                print("Error creating user: \(error!.localizedDescription)")
+            }
         }
     }
     
+    /*
+     * Checks if string is a valid email
+     * Returns true if valid
+     */
     func isValidEmail(email:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }

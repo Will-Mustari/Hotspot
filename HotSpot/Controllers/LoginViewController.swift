@@ -24,7 +24,6 @@ class LoginViewController: UIViewController {
      * Calls Firebase Auth to check for valid login
      */
     @IBAction func loginButtonPress(_ sender: Any) {
-        //TODO: HANDLE INVALID EMAIL OR PASSWORD
         if userEmail == nil {
             print("ERROR")
             return
@@ -36,10 +35,20 @@ class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
-                //TODO: SHOW USER SUCCESS MESSAGE HERE
+                self.userEmail.layer.borderColor = UIColor.clear.cgColor
+                self.userPassword.layer.borderColor = UIColor.clear.cgColor
+                
+                /////////TODO: ADD SUCCESS MESSAGE HERE/////////
+                
                 self.performSegue(withIdentifier: "loginToMainMenu", sender: self)
             } else {
-                //TODO: SHOW USER ERROR MESSAGE HERE
+                self.userEmail.layer.borderColor = UIColor.red.cgColor
+                self.userEmail.layer.borderWidth = 1.0
+                self.userPassword.layer.borderColor = UIColor.red.cgColor
+                self.userPassword.layer.borderWidth = 1.0
+                
+                /////////TODO: ADD ERROR MESSAGE HERE//////////
+                
                 print("Error creating user: \(error!.localizedDescription)")
             }
         }
