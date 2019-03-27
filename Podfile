@@ -6,8 +6,10 @@ target 'HotSpot' do
   use_frameworks!
 
   # Pods for HotSpot
-
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 
 end

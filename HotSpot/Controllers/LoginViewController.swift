@@ -7,16 +7,53 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var userEmail: UITextField!
+    @IBOutlet weak var userPassword: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
-
+    /*
+     * ACTION - press of login button
+     * Calls Firebase Auth to check for valid login
+     */
+    @IBAction func loginButtonPress(_ sender: Any) {
+        if userEmail == nil {
+            print("ERROR")
+            return
+        }
+        
+        //Checks if fields are empty
+        guard let email = userEmail.text else { return }
+        guard let pass = userPassword.text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: pass) { user, error in
+            if error == nil && user != nil {
+                self.userEmail.layer.borderColor = UIColor.clear.cgColor
+                self.userPassword.layer.borderColor = UIColor.clear.cgColor
+                
+                /////////TODO: ADD SUCCESS MESSAGE HERE/////////
+                
+                self.performSegue(withIdentifier: "loginToMainMenu", sender: self)
+            } else {
+                self.userEmail.layer.borderColor = UIColor.red.cgColor
+                self.userEmail.layer.borderWidth = 1.0
+                self.userPassword.layer.borderColor = UIColor.red.cgColor
+                self.userPassword.layer.borderWidth = 1.0
+                
+                /////////TODO: ADD ERROR MESSAGE HERE//////////
+                
+                print("Error creating user: \(error!.localizedDescription)")
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

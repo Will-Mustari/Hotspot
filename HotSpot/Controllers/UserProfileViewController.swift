@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserProfileViewController: UIViewController {
 
@@ -16,7 +17,11 @@ class UserProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func handleLogout(_ sender: UIBarButtonItem) {
+        try! Auth.auth().signOut()
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import MapKit
 
 class HeatmapViewController: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
