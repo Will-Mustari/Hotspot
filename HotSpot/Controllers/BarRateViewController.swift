@@ -8,8 +8,7 @@
 
 import UIKit
 import Firebase
-//TODO must use podfile to also import FirebaseDatabase
-//import FirebaseDatabase
+import FirebaseFirestore
 
 class BarRateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate {
 
@@ -30,6 +29,9 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Initialize Firestore
+        let database = Firestore.firestore()
         
         //Initialize text fields
         updateRatingLabel();
@@ -59,6 +61,26 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
      */
     @IBAction func submitRatingButton(_ sender: UIButton) {
         //TODO
+        let review = reviewText.text;
+        let rating = ratingValue.value;
+        let vibe = selectedVibes;
+        
+        var ref: DocumentReference? = nil
+        
+        ref = db.collection("Ratings").addDocument(data: [
+            "barName": barName,
+            "review": review ?? "",
+            "rating": rating,
+            "vibes": selectedVibes
+            
+        ]) {err in
+            if let err = err {
+                print("Error adding rating \(err)")
+            } else {
+                print("Document added with ID: \ref!.documentID")
+            }
+            
+        }
         
     }
     
