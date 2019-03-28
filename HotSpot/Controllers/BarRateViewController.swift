@@ -40,6 +40,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         layout.minimumLineSpacing = 3
         
         collectionView.collectionViewLayout = layout
+        
     }
     
     @IBAction func ratingValueChanged(_ sender: UISlider) {
