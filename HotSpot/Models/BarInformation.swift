@@ -12,7 +12,7 @@ import Firebase
 let db = Firestore.firestore()
 struct BarInformation {
     let uniqueBarNameID : String
-    var vibeRating : [Vibe]
+    var vibeRating : String
     var overallRating : Double
     var locationLatitude : Double
     var locationLongitude : Double
