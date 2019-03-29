@@ -39,7 +39,8 @@ class LoginViewController: UIViewController {
                 self.userPassword.layer.borderColor = UIColor.clear.cgColor
                 
                 /////////TODO: ADD SUCCESS MESSAGE HERE/////////
-                
+                self.userEmail.text=""
+                self.userPassword.text=""
                 self.performSegue(withIdentifier: "loginToMainMenu", sender: self)
             } else {
                 self.userEmail.layer.borderColor = UIColor.red.cgColor

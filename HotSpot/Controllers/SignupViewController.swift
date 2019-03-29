@@ -70,6 +70,9 @@ class SignupViewController: UIViewController {
                 ///////TODO: ADD SUCCESS MESSAGE POPUP////////
                 
                 print("User created!")
+                self.userEmail.text=""
+                self.userPassword.text=""
+                self.userPasswordConfirm.text=""
                 self.performSegue(withIdentifier: "signupToMainMenu", sender: self)
             } else {
                 self.userPassword.layer.borderColor = UIColor.red.cgColor
