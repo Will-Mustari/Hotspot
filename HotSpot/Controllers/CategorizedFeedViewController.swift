@@ -32,7 +32,10 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         return cell
     }
     func getBars(){
-        
+        loadBars { (loadedBars) in
+            self.bars = loadedBars
+            self.barTableView.reloadData()
+        }
     }
     @IBOutlet weak var barTableView: UITableView!
     override func viewDidLoad() {
@@ -44,7 +47,9 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
 //
 //            self.posts.insert(postStruct(barName: barName, address: address), atIndex: 0)
 //        })
-        
+        barTableView.dataSource = self
+        barTableView.delegate = self
+        getBars()
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
