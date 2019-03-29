@@ -8,20 +8,50 @@
 
 import UIKit
 import Firebase
-//TODO must use podfile to also import FirebaseDatabase
-//import FirebaseDatabase
+import FirebaseFirestore
 
-class BarRateViewController: UIViewController {
+class BarRateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate {
+
     
-    var barName = ""
-
+    //Name of bar is passed from previous view
+    var barName = "";
+    //Vibe list
+    let vibeArray:[String] = ["CheapDrinks", "Chill", "DJ", "Party"];
+    //Selected list of vibes
+    var selectedVibes:[String] = [];
+    
     @IBOutlet weak var barNameLabel: UILabel!
+    @IBOutlet weak var ratingValueLabel: UILabel!
+    @IBOutlet weak var ratingValue: UISlider!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var reviewText: UITextView!
+    @IBOutlet weak var curCharCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //Set label to name given from previous view
+        
+        //Initialize Firestore
+        let database = Firestore.firestore()
+        
+        //Initialize text fields
+        updateRatingLabel();
         barNameLabel.text = barName;
+        curCharCountLabel.text = "Character count: " + String(reviewText.text.count);
+        
+        //collectionview layout settings
+        let itemSize = UIScreen.main.bounds.width/3 - 3
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0);
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 3
+        collectionView.collectionViewLayout = layout
+        
+    }
+    
+    @IBAction func ratingValueChanged(_ sender: UISlider) {
+        updateRatingLabel()
     }
     
     /*
@@ -31,9 +61,56 @@ class BarRateViewController: UIViewController {
      */
     @IBAction func submitRatingButton(_ sender: UIButton) {
         //TODO
+        let review = reviewText.text;
+        let rating = ratingValue.value;
+        let vibe = selectedVibes;
+        
+        var ref: DocumentReference? = nil
+        
+        ref = db.collection("Ratings").addDocument(data: [
+            "barName": barName,
+            "review": review ?? "",
+            "rating": rating,
+            "vibes": selectedVibes
+            
+        ]) {err in
+            if let err = err {
+                print("Error adding rating \(err)")
+            } else {
+                print("Document added with ID: \ref!.documentID")
+            }
+            
+        }
         
     }
     
+    
+    //number of views
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return vibeArray.count;
+    }
+    
+    //Populate cells
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VibesCollectionViewCell;
+        cell.cellImage.image = UIImage(named: vibeArray[indexPath.row] + ".jpg");
+        return cell;
+    }
+    
+    //Updates the text to equal the value of the slider directly below it
+    func updateRatingLabel() {
+        let value = ratingValue.value;
+        let stringValue = NSString(format: "%.2f", value);
+        ratingValueLabel.text = "Rating: " + (stringValue as String) + " out of 5";
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText string: String) -> Bool {
+        curCharCountLabel.text = "Character count: " + String(reviewText.text.count)
+    
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: string)
+        let numberOfChars = newText.count
+        return numberOfChars < 128
+    }
     /*
     // MARK: - Navigation
 
