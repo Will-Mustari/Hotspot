@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import FirebaseFirestore
 
 class BarRateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate {
@@ -48,6 +49,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         layout.minimumLineSpacing = 3
         collectionView.collectionViewLayout = layout
         
+        
     }
     
     @IBAction func ratingValueChanged(_ sender: UISlider) {
@@ -71,7 +73,8 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             "barName": barName,
             "review": review ?? "",
             "rating": rating,
-            "vibes": vibe
+            "vibes": vibe,
+            "userID": Auth.auth().currentUser!.uid
             
         ]) {err in
             if let err = err {

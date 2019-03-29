@@ -12,7 +12,7 @@ struct ReviewInformation {
     //TODO: Set up review variables
     var review:String
     var rating: Double
-    var vibes:[Vibe]
+    var vibes:[String]
     var barName:String
     var userId:String
 }
