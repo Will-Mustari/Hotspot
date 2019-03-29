@@ -71,7 +71,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             "barName": barName,
             "review": review ?? "",
             "rating": rating,
-            "vibes": selectedVibes
+            "vibes": vibe
             
         ]) {err in
             if let err = err {
