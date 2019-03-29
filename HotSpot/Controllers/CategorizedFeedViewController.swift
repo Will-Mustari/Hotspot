@@ -28,6 +28,8 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         let bar = bars[indexPath.row]
         cell.address.text = bar.address
         cell.barName.text = bar.uniqueBarNameID
+        cell.overallRating.text = String(bar.overallRating)
+        cell.vibeRating.text = bar.vibeRating
         
         return cell
     }

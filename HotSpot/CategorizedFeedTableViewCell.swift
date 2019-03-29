@@ -12,6 +12,6 @@ import UIKit
 class CategorizedFeedTableViewCell: UITableViewCell{
     @IBOutlet weak var barName: UILabel!
     @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var overallRating: UITextView!
+    @IBOutlet weak var overallRating: UILabel!
     @IBOutlet weak var vibeRating: UILabel!
 }

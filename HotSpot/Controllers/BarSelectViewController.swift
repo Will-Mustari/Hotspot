@@ -12,8 +12,14 @@ import FirebaseFirestore
 
 class BarSelectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var barNameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    
     let barName = "Sconnie Bar"
+    let address = "101 Regent St, Madison WI 53714"
     var ratings:[ReviewInformation] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,12 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         //Initialize database
         let database = Firestore.firestore()
         
+        
+        barNameLabel.text = barName
+        addressLabel.text = address
+        
+        loadReviews()
+        print(ratings)
         // Do any additional setup after loading the view.
     }
     
@@ -29,10 +41,10 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! ReviewsTableViewCell
         let rating = ratings[indexPath.row]
         
-        cell.textLabel?.text = rating.review
+        cell.tableTextLabel.text = rating.review
         
         return cell
     }
@@ -47,6 +59,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
                     for document in querySnapshot!.documents {
                         var newRating = ReviewInformation.init(review: "",rating: 0,vibes: [],barName: "",userId: "")
                         
+                        print(document.data())
                         newRating.rating = document.data()["rating"] as! Double
                         newRating.review = document.data()["review"] as! String
                         newRating.barName = document.data()["barName"] as! String
