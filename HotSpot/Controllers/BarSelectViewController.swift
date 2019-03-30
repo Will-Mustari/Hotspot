@@ -14,6 +14,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var reviewTable: UITableView!
     
     
     let barName = "Sconnie Bar"
@@ -32,6 +33,9 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         addressLabel.text = address
         
         loadReviews()
+        reviewTable.delegate = self
+        reviewTable.dataSource = self
+        reviewTable.reloadData()
         print(ratings)
         // Do any additional setup after loading the view.
     }
@@ -41,7 +45,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! ReviewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell") as! ReviewsTableViewCell
         let rating = ratings[indexPath.row]
         
         cell.tableTextLabel.text = rating.review
@@ -59,7 +63,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
                     for document in querySnapshot!.documents {
                         var newRating = ReviewInformation.init(review: "",rating: 0,vibes: [],barName: "",userId: "")
                         
-                        print(document.data())
+                        
                         newRating.rating = document.data()["rating"] as! Double
                         newRating.review = document.data()["review"] as! String
                         newRating.barName = document.data()["barName"] as! String
