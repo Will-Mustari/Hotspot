@@ -20,6 +20,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     let vibeArray:[String] = ["CheapDrinks", "Chill", "DJ", "Party"];
     //Selected list of vibes
     var selectedVibes:[String] = [];
+    var test = "";
     
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var ratingValueLabel: UILabel!
