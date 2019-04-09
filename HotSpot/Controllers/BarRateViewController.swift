@@ -85,12 +85,18 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             
         }
         
+        performSegue(withIdentifier: "rateSubmitted", sender: self)
+        
     }
     
     
     //number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vibeArray.count;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedVibes.append(vibeArray[indexPath.row])
     }
     
     //Populate cells
@@ -114,14 +120,17 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         let numberOfChars = newText.count
         return numberOfChars < 128
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let newView = segue.destination as? BarSelectViewController {
+            newView.barName = barName
+        }
     }
-    */
+    
 
 }
