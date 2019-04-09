@@ -17,6 +17,7 @@ struct bar {
 class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var bars:[BarInformation] = []
+    var selectedBarName = ""
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bars.count
     }
@@ -33,6 +34,12 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedBarName = bars[indexPath.row].uniqueBarNameID
+        performSegue(withIdentifier: "feedToBarSelect", sender: self)
+    }
+    
     func getBars(){
         loadBars { (loadedBars) in
             self.bars = loadedBars
@@ -58,14 +65,17 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let newView = segue.destination as? BarSelectViewController {
+            newView.barName = selectedBarName
+        }
     }
-    */
+    
 
 }
