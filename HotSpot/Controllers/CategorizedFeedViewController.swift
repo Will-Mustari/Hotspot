@@ -17,7 +17,7 @@ struct bar {
 class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var bars:[BarInformation] = []
-    var selectedBarName = ""
+    var selectedBar:BarInformation = BarInformation.init(uniqueBarNameID: "", vibeRating: "", overallRating: 0, locationLatitude: 0, locationLongitude: 0, address: "", popularity: 0, numRatings: 0)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bars.count
     }
@@ -36,7 +36,7 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedBarName = bars[indexPath.row].uniqueBarNameID
+        selectedBar = bars[indexPath.row]
         performSegue(withIdentifier: "feedToBarSelect", sender: self)
     }
     
@@ -73,7 +73,12 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let newView = segue.destination as? BarSelectViewController {
-            newView.barName = selectedBarName
+            newView.barName = selectedBar.uniqueBarNameID
+            newView.address = selectedBar.address
+            newView.popularity = selectedBar.popularity
+            newView.overallRating = Float(selectedBar.overallRating)
+            newView.currentVibe = selectedBar.vibeRating
+            newView.numRatings = selectedBar.numRatings
         }
     }
     

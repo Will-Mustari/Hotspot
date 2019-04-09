@@ -15,12 +15,17 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
 
     
     //Name of bar is passed from previous view
-    var barName = "";
+    var barName = ""
+    var address = ""
+    var popularity = 0
+    var currentVibe = ""
+    var overallRating:Float = 0
+    var numRatings = 0
     //Vibe list
     let vibeArray:[String] = ["CheapDrinks", "Chill", "DJ", "Party"];
     //Selected list of vibes
     var selectedVibes:[String] = [];
-    var test = "";
+    let MAX_CHARS = 128
     
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var ratingValueLabel: UILabel!
@@ -85,7 +90,8 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             }
             
         }
-        
+        //Update the bar with new data
+        updateBar()
         performSegue(withIdentifier: "rateSubmitted", sender: self)
         
     }
@@ -114,12 +120,48 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         ratingValueLabel.text = "Rating: " + (stringValue as String) + " out of 5";
     }
     
+    //Creates the max char limit that is set
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText string: String) -> Bool {
         curCharCountLabel.text = "Character count: " + String(reviewText.text.count)
     
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count
-        return numberOfChars < 128
+        return numberOfChars < MAX_CHARS
+    }
+    
+    func updateBar() {
+
+        let noSpaceBarName = barName.replacingOccurrences(of: " ", with: "")
+        let docRef = db.collection("Bars").document(noSpaceBarName)
+        /*
+        var numRatings = 0;
+        var overallRating:Float = 0;
+        var popularity = 0;
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists{
+                numRatings = (document.data()!["numRatings"] as! Int)
+                overallRating = (document.data()!["overallRating"] as! Float)
+                popularity = (document.data()!["popularity"] as! Int)
+            } else {
+                print("Doc does not exist")
+            }
+        }*/
+        
+        docRef.updateData([
+            "popularity": popularity + 1,
+            "overallRating": overallRating + ratingValue.value,
+            "numRatings": numRatings + 1
+        ]) {err in
+            if let err = err {
+                print("Error updating data \(err)")
+            } else {
+                print("Document updated: \ref!.documentID")
+            }
+            
+        }
+        
+        
     }
     
     // MARK: - Navigation
@@ -130,6 +172,10 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         // Pass the selected object to the new view controller.
         if let newView = segue.destination as? BarSelectViewController {
             newView.barName = barName
+            newView.address = address
+            newView.popularity = popularity
+            newView.overallRating = overallRating
+            newView.numRatings = numRatings
         }
     }
     

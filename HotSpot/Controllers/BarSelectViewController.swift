@@ -15,10 +15,17 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var reviewTable: UITableView!
+    @IBOutlet weak var overallRatingLabel: UILabel!
+    @IBOutlet weak var currentVibeLabel: UILabel!
+    @IBOutlet weak var popularityLabel: UILabel!
     
     
     var barName = ""
-    let address = ""
+    var address = ""
+    var popularity = 0
+    var currentVibe = ""
+    var overallRating:Float = 0
+    var numRatings = 0
     var ratings:[ReviewInformation] = []
     
     
@@ -30,6 +37,9 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         
         barNameLabel.text = barName
         addressLabel.text = address
+        overallRatingLabel.text = NSString(format: "%.2f", overallRating) as String;
+        currentVibeLabel.text = currentVibe
+        popularityLabel.text = String(popularity)
         
         loadReviews { (loadedRatings) in
             self.ratings = loadedRatings
@@ -97,6 +107,10 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         // Pass the selected object to the new view controller.
         if let newView = segue.destination as? BarRateViewController {
             newView.barName = barName
+            newView.address = address
+            newView.popularity = popularity
+            newView.overallRating = overallRating
+            newView.numRatings = numRatings
         }
         
     }

@@ -18,6 +18,7 @@ struct BarInformation {
     var locationLongitude : Double
     var address : String
     var popularity : Int
+    var numRatings : Int
     
     func loadReviews(completion: @escaping ([ReviewInformation]) -> Void){
         //TODO: load review for bar from database
@@ -70,7 +71,7 @@ func loadBars(completion: @escaping ([BarInformation]) -> Void){
             //TODO: Change the vibe rating to a collection and add calculation of vibe
             let vibeRating = document.data()["vibeRating"] as! String
             print("VIBE RATING: \(vibeRating)")
-            let bar = BarInformation.init(uniqueBarNameID: barName, vibeRating: vibeRating, overallRating: overallRating, locationLatitude: 0, locationLongitude: 0, address: address, popularity: popularity)
+            let bar = BarInformation.init(uniqueBarNameID: barName, vibeRating: vibeRating, overallRating: overallRating, locationLatitude: 0, locationLongitude: 0, address: address, popularity: popularity, numRatings: 0)
             bars.append(bar)
         }
         completion(bars)
