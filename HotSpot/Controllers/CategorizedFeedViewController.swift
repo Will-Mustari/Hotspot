@@ -30,12 +30,13 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         cell.address.text = bar.address
         cell.barName.text = bar.uniqueBarNameID
         if(bar.numRatings == 0) {
-            cell.overallRating.text = String(format: "%.1d", bar.overallRating)
+            cell.overallRating.text = "Rating: " + String(format: "%.1f", bar.overallRating)
         } else {
-            cell.overallRating.text = String(format: "%.1d", (bar.overallRating / Double(bar.numRatings)))
+            let actualRating = Double(bar.overallRating / Double(bar.numRatings))
+            cell.overallRating.text = "Rating: " + String(format: "%.1f", actualRating)
         }
         
-        cell.vibeRating.text = bar.vibeRating
+        cell.vibeRating.text = "Vibes: " + bar.vibeRating
         
         return cell
     }
@@ -81,7 +82,7 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
             newView.barName = selectedBar.uniqueBarNameID
             newView.address = selectedBar.address
             newView.popularity = selectedBar.popularity
-            newView.overallRating = Float(selectedBar.overallRating)
+            newView.overallRating = selectedBar.overallRating
             newView.currentVibe = selectedBar.vibeRating
             newView.numRatings = selectedBar.numRatings
         }

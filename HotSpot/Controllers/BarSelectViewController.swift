@@ -24,9 +24,10 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     var address = ""
     var popularity = 0
     var currentVibe = ""
-    var overallRating:Float = 0
+    var overallRating:Double = 0
     var numRatings = 0
     var ratings:[ReviewInformation] = []
+    var reviews:[String] = []
     
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         
         barNameLabel.text = barName
         addressLabel.text = address
-        overallRatingLabel.text = "Rating: " + String(format: "%.1f", (overallRating / Float(numRatings)))
+        overallRatingLabel.text = "Rating: " + String(format: "%.1f", (overallRating / Double(numRatings)))
         currentVibeLabel.text = "Current Vibe: " + currentVibe
         popularityLabel.text = "Current Popularity: " + String(popularity)
         
@@ -49,8 +50,10 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         reviewTable.delegate = self
         reviewTable.dataSource = self
         reviewTable.reloadData()
-        print(ratings)
+        print("ratings: \(ratings)")
         super.viewDidLoad()
+        print("ratings: \(ratings)")
+        
         // Do any additional setup after loading the view.
     }
     
@@ -64,14 +67,15 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         let rating = ratings[indexPath.row]
         
-        cell.tableTextLabel.text = rating.review
+        if(rating.review != "" && !rating.review.isEmpty) {
+            cell.tableTextLabel.text = rating.review
+        }
         
         return cell
     }
 
 
     func loadReviews(completion: @escaping ([ReviewInformation]) -> Void){
-        
         db.collection("Ratings").whereField("barName", isEqualTo: barName)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -97,8 +101,6 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
                     completion(rateArray)
                 }
         }
-        
-
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -12,4 +12,20 @@ class VibesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     
+    override var isSelected: Bool {
+        didSet {
+            if(isSelected == true) {
+                self.layer.borderColor = UIColor.black.cgColor
+                self.layer.borderWidth = 2
+            } else {
+                self.layer.borderColor = UIColor.clear.cgColor
+                self.layer.borderWidth = 2
+            }
+        }
+    }
+    /*
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        isSelected = false
+    }*/
 }
