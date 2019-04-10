@@ -69,9 +69,10 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
      */
     @IBAction func submitRatingButton(_ sender: UIButton) {
         //TODO
-        let review = reviewText.text;
-        let rating = ratingValue.value;
-        let vibe = selectedVibes;
+        let review = reviewText.text
+        let tempRating = String(format: "%.1f", (round((ratingValue.value * 10)) / 10))
+        let rating = Double(tempRating)!
+        let vibe = selectedVibes
         
         var ref: DocumentReference? = nil
         
@@ -80,7 +81,8 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             "review": review ?? "",
             "rating": rating,
             "vibes": vibe,
-            "userID": Auth.auth().currentUser!.uid
+            "userID": Auth.auth().currentUser!.uid,
+            "timeStamp": FieldValue.serverTimestamp()
             
         ]) {err in
             if let err = err {
@@ -96,7 +98,9 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         
     }
     
-    
+    /*
+     * MARK: Set of methods that control the functionality of the collection view
+     */
     //number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vibeArray.count;
@@ -113,10 +117,12 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         return cell;
     }
     
+    
+    
     //Updates the text to equal the value of the slider directly below it
     func updateRatingLabel() {
-        let value = ratingValue.value;
-        let stringValue = NSString(format: "%.2f", value);
+        let value = round((ratingValue.value * 10))/10
+        let stringValue = String(value)
         ratingValueLabel.text = "Rating: " + (stringValue as String) + " out of 5";
     }
     
@@ -133,25 +139,28 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
 
         let noSpaceBarName = barName.replacingOccurrences(of: " ", with: "")
         let docRef = db.collection("Bars").document(noSpaceBarName)
-        /*
-        var numRatings = 0;
-        var overallRating:Float = 0;
-        var popularity = 0;
-        
+
+        // get current data from database
         docRef.getDocument { (document, error) in
             if let document = document, document.exists{
-                numRatings = (document.data()!["numRatings"] as! Int)
-                overallRating = (document.data()!["overallRating"] as! Float)
-                popularity = (document.data()!["popularity"] as! Int)
+                self.numRatings = (document.data()!["numRatings"] as! Int)
+                self.overallRating = (document.data()!["overallRating"] as! Float)
+                self.popularity = (document.data()!["popularity"] as! Int)
             } else {
                 print("Doc does not exist")
             }
-        }*/
+        }
         
+        //update local bar data
+        numRatings += 1
+        overallRating += ratingValue.value
+        popularity += 1
+        
+        //update server side bar data
         docRef.updateData([
-            "popularity": popularity + 1,
-            "overallRating": overallRating + ratingValue.value,
-            "numRatings": numRatings + 1
+            "popularity": popularity,
+            "overallRating": overallRating,
+            "numRatings": numRatings
         ]) {err in
             if let err = err {
                 print("Error updating data \(err)")
@@ -160,8 +169,6 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             }
             
         }
-        
-        
     }
     
     // MARK: - Navigation

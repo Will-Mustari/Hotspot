@@ -67,11 +67,12 @@ func loadBars(completion: @escaping ([BarInformation]) -> Void){
             print("OVERALL RATING: \(overallRating)")
             let popularity = document.data()["popularity"] as! Int
             print("POPULARITY: \(popularity)")
+            let numRatings = document.data()["numRatings"] as! Int
             
             //TODO: Change the vibe rating to a collection and add calculation of vibe
             let vibeRating = document.data()["vibeRating"] as! String
             print("VIBE RATING: \(vibeRating)")
-            let bar = BarInformation.init(uniqueBarNameID: barName, vibeRating: vibeRating, overallRating: overallRating, locationLatitude: 0, locationLongitude: 0, address: address, popularity: popularity, numRatings: 0)
+            let bar = BarInformation.init(uniqueBarNameID: barName, vibeRating: vibeRating, overallRating: overallRating, locationLatitude: 0, locationLongitude: 0, address: address, popularity: popularity, numRatings: numRatings)
             bars.append(bar)
         }
         completion(bars)

@@ -37,9 +37,9 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         
         barNameLabel.text = barName
         addressLabel.text = address
-        overallRatingLabel.text = NSString(format: "%.2f", overallRating) as String;
-        currentVibeLabel.text = currentVibe
-        popularityLabel.text = String(popularity)
+        overallRatingLabel.text = "Rating: " + String(format: "%.1f", (overallRating / Float(numRatings)))
+        currentVibeLabel.text = "Current Vibe: " + currentVibe
+        popularityLabel.text = "Current Popularity: " + String(popularity)
         
         loadReviews { (loadedRatings) in
             self.ratings = loadedRatings

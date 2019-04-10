@@ -29,7 +29,12 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         let bar = bars[indexPath.row]
         cell.address.text = bar.address
         cell.barName.text = bar.uniqueBarNameID
-        cell.overallRating.text = String(bar.overallRating)
+        if(bar.numRatings == 0) {
+            cell.overallRating.text = String(format: "%.1d", bar.overallRating)
+        } else {
+            cell.overallRating.text = String(format: "%.1d", (bar.overallRating / Double(bar.numRatings)))
+        }
+        
         cell.vibeRating.text = bar.vibeRating
         
         return cell
