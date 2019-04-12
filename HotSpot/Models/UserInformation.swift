@@ -22,7 +22,7 @@ struct UserInformation {
         ]){error in
             if error != nil{
                 //handle error
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }else{
                 print("Document saved correctly")
             }
