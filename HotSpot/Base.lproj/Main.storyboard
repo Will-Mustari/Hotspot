@@ -307,6 +307,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBU-iH-Lxn">
+                                <rect key="frame" x="20" y="200" width="374" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Oe-hg-hqX">
+                                <rect key="frame" x="20" y="162" width="374" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csr-ml-0eq">
+                                <rect key="frame" x="75" y="673" width="264" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ITD-QZ-MNL" kind="show" id="nOD-uO-urO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -319,10 +344,59 @@
                     <tabBarItem key="tabBarItem" title="User Profile" id="O95-VD-x2E"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="DBU-iH-Lxn" id="yNZ-1d-Mkg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3c-FY-3Tk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="871"/>
+            <point key="canvasLocation" x="1869.5652173913045" y="870.53571428571422"/>
+        </scene>
+        <!--User Settings View Controller-->
+        <scene sceneID="i9v-hc-jN0">
+            <objects>
+                <viewController id="ITD-QZ-MNL" customClass="UserSettingsViewController" customModule="HotSpot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xom-BI-bp7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-oA-9j6">
+                                <rect key="frame" x="20" y="44" width="47" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="rTE-UX-Kj5" kind="show" id="bTV-SR-BqQ"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="To reset your password, click the button below and we'll send you an email to change your passsword" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4d-EY-MZD">
+                                <rect key="frame" x="20" y="138" width="374" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOn-83-NZM">
+                                <rect key="frame" x="75" y="264" width="264" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Reset &amp; Logout">
+                                    <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ResetButtonPressed:" destination="pkb-1N-SsF" eventType="touchUpInside" id="6Kp-Sy-zDq"/>
+                                    <action selector="ResetButtonPressed:" destination="ITD-QZ-MNL" eventType="touchUpInside" id="Jpb-IP-xKG"/>
+                                    <segue destination="cYg-7Y-AOu" kind="show" id="T7p-l2-68p"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zr3-Rx-j3B"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpl-d5-9fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="pkb-1N-SsF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3027.536231884058" y="871.875"/>
         </scene>
         <!--HeatMapView-->
         <scene sceneID="NKc-5V-bce">
@@ -775,8 +849,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="nOD-uO-urO"/>
         <segue reference="FfY-bY-TcU"/>
         <segue reference="ffF-rE-BdV"/>
+        <segue reference="bTV-SR-BqQ"/>
+        <segue reference="T7p-l2-68p"/>
         <segue reference="rfs-9D-64e"/>
     </inferredMetricsTieBreakers>
 </document>
