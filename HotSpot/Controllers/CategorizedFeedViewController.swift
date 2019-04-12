@@ -18,7 +18,7 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
     
     @IBOutlet weak var sortBy: UIPickerView!
     var bars:[BarInformation] = []
-    var sortByOptions: [String] = ["Name", "Best", "Worst", "Vibe", "Popularity"]
+    var sortByOptions: [String] = ["Name", "Best", "Vibe", "Popularity"]
     var selectedBar:BarInformation = BarInformation.init(uniqueBarNameID: "", vibeRating: "", overallRating: 0, locationLatitude: 0, locationLongitude: 0, address: "", popularity: 0, numRatings: 0)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bars.count
@@ -82,15 +82,10 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
 
             break
         case 2:
-            //Worst
-            bars = bars.sorted(by: {($0.overallRating / Double($0.numRatings)) < ($1.overallRating / Double($1.numRatings))})
-
-            break
-        case 3:
             //Vibe
 
             break
-        case 4:
+        case 3:
             //Popularity
             bars = bars.sorted(by: {$0.popularity > $1.popularity})
             break
