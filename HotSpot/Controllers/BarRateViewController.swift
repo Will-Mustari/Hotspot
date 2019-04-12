@@ -25,6 +25,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     let vibeArray:[String] = ["CheapDrinks", "Chill", "DJ", "Party"];
     //Selected list of vibes
     var selectedVibes:[String] = [];
+    var ratings:[ReviewInformation] = []
     let MAX_CHARS = 128
     
     
@@ -208,6 +209,23 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             }
         }
         
+        //update the vibes for this bar
+        var vibeMap:[String : Int] = [:]//["CheapDrinks", "Chill", "DJ", "Party"]
+        for vibe in vibeArray {
+            vibeMap[vibe] = 0
+        }
+        
+        for rating in ratings {
+            for vibe in rating.vibes {
+                vibeMap[vibe] = vibeMap[vibe]! + 1
+            }
+        }
+        
+        let sortedMap = vibeMap.sorted { (first: (key: String, value: Int), second: (key: String, value: Int)) -> Bool in
+            return first.value < second.value
+        }
+        
+        
         //update local bar data
         let tempRating = String(format: "%.1f", (round((ratingValue.value * 10)) / 10))
         let rating = Double(tempRating)!
@@ -227,7 +245,8 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         docRef.updateData([
             "popularity": popularity,
             "overallRating": roundedRating,
-            "numRatings": numRatings
+            "numRatings": numRatings,
+            "vibeRating": "\(sortedMap[0].key), \(sortedMap[1].key)"
         ]) {err in
             if let err = err {
                 print("Error updating data \(err)")
@@ -237,6 +256,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             
         }
     }
+    
     
     // MARK: - Navigation
 
