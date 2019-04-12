@@ -13,7 +13,7 @@ struct UserInformation {
     var username:String
     var email:String
     var userId:String
-    
+  
     func createUser( user: UserInformation){
         //TODO: Create User in Database from information
         db.document(userId).setData([
