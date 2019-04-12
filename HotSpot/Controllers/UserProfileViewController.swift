@@ -11,10 +11,14 @@ import Firebase
 
 class UserProfileViewController: UIViewController {
 
+    @IBOutlet var emailLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        emailLabel.text = Auth.auth().currentUser?.email
     }
     
     @IBAction func handleLogout(_ sender: UIBarButtonItem) {
