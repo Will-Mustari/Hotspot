@@ -11,15 +11,18 @@ import MapKit
 import CoreLocation
 
 class HeatmapViewController: UIViewController {
+    
+    var bars:[BarInformation] = []
 
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-    let regionM: Double = 5000
+    let regionM: Double = 2500
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
+        getBars()
     }
     
     func setupLocationManager() {
@@ -64,6 +67,30 @@ class HeatmapViewController: UIViewController {
         case .authorizedAlways:
             mapView.showsUserLocation = true
             break
+        }
+    }
+    
+    func getBars(){
+        loadBars { (loadedBars) in
+            self.bars = loadedBars
+            self.makeMapPoints()
+        }
+    }
+    
+    func makeMapPoints() {
+        print("test")
+        print(bars)
+        for bar in bars {
+            var lat = 0.0
+            var long = 0.0
+            lat = bar.locationLatitude
+            print(lat)
+            long = bar.locationLongitude
+            print(long)
+            let barPoint = MKPointAnnotation()
+            barPoint.title = bar.uniqueBarNameID
+            barPoint.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            mapView.addAnnotation(barPoint)
         }
     }
 }
