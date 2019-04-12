@@ -21,26 +21,30 @@ struct BarInformation {
     var numRatings : Int
     
     func loadReviews(completion: @escaping ([ReviewInformation]) -> Void){
-        //TODO: load review for bar from database
-        let barName = self.uniqueBarNameID
-        db.collection("Reviews").whereField("barName", isEqualTo: barName).getDocuments { (querySnapshot, error) in
-            if error != nil{
-                //handle error
-                print(error?.localizedDescription as Any)
-            }else{
-                var reviews:[ReviewInformation] = []
-                for document in querySnapshot!.documents{
-                    let review = document.data()["description"] as! String
-                    let overallRating = document.data()["overallRating"] as! Double
-                    let user = document.data()["user"] as! String
-                    //TODO: Calculate vibes
-                    //let vibeRating =
+        db.collection("Ratings").whereField("barName", isEqualTo: self.uniqueBarNameID)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    var rateArray:[ReviewInformation] = []
+                    for document in querySnapshot!.documents {
+                        
+                        let rating = document.data()["rating"] as! Double
+                        let review = "\"" + (document.data()["review"] as! String) + "\""
+                        let barName = document.data()["barName"] as! String
+                        let userID = document.data()["userID"] as! String
+                        let vibes = document.data()["vibes"] as! [String]
+                        
+                        let newRating = ReviewInformation.init(review: review,rating: rating,vibes: vibes,barName: barName,userId: userID)
+                        print(newRating.barName)
+                        print(newRating.review)
+                        
+                        
+                        rateArray.append(newRating)
+                    }
                     
-                    let reviewInfo = ReviewInformation.init(review: review, rating: overallRating, vibes: [], barName: barName, userId: user)
-                    reviews.append(reviewInfo)
+                    completion(rateArray)
                 }
-                completion(reviews)
-            }
         }
     }
 }

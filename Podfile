@@ -6,11 +6,19 @@ target 'HotSpot' do
   use_frameworks!
 
   # Pods for HotSpot
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'GooglePlaces'
-  pod 'GooglePlacePicker'
-  pod 'GoogleMaps'
+  def common_pods
+      pod 'Firebase/Core'
+      pod 'Firebase/Auth'
+      pod 'Firebase/Firestore'
+      pod 'GooglePlaces'
+      pod 'GooglePlacePicker'
+      pod 'GoogleMaps'
+  end
+common_pods
+
+  target 'HotSpotTests' do
+      inherit! :search_paths
+      common_pods
+  end
 
 end
