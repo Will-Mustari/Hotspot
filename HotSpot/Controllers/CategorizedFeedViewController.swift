@@ -14,9 +14,11 @@ struct bar {
     let address : String!
 }
 
-class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    @IBOutlet weak var sortBy: UIPickerView!
     var bars:[BarInformation] = []
+    var sortByOptions: [String] = ["Name", "Best", "Worst", "Vibe", "Popularity"]
     var selectedBar:BarInformation = BarInformation.init(uniqueBarNameID: "", vibeRating: "", overallRating: 0, locationLatitude: 0, locationLongitude: 0, address: "", popularity: 0, numRatings: 0)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bars.count
@@ -52,6 +54,54 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
             self.barTableView.reloadData()
         }
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return sortByOptions.count
+    }
+    
+    // The data to return fopr the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return sortByOptions[row]
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch row {
+        case 0:
+            //Name
+            bars = bars.sorted(by: {$0.uniqueBarNameID < $1.uniqueBarNameID})
+            break
+        case 1:
+            //Best
+            bars = bars.sorted(by: {($0.overallRating / Double($0.numRatings)) > ($1.overallRating / Double($1.numRatings))})
+
+            break
+        case 2:
+            //Worst
+            bars = bars.sorted(by: {($0.overallRating / Double($0.numRatings)) < ($1.overallRating / Double($1.numRatings))})
+
+            break
+        case 3:
+            //Vibe
+
+            break
+        case 4:
+            //Popularity
+            bars = bars.sorted(by: {$0.popularity > $1.popularity})
+            break
+        default:
+            bars = bars.sorted(by: {$0.uniqueBarNameID < $1.uniqueBarNameID})
+            break
+        }
+        barTableView.reloadData()
+    }
+ 
+    
     @IBOutlet weak var barTableView: UITableView!
     override func viewDidLoad() {
         //        let databaseRef = FIRDatabase.database().reference()
@@ -65,6 +115,8 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
         barTableView.dataSource = self
         barTableView.delegate = self
         getBars()
+        self.sortBy.delegate = self
+        self.sortBy.dataSource = self
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
