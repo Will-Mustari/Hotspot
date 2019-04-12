@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fb3-QU-IfH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fb3-QU-IfH">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.45"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="-1688" y="149"/>
         </scene>
-        <!--SignupMenuView-->
+        <!--SignupViewController-->
         <scene sceneID="Inz-jj-Ym1">
             <objects>
-                <viewController title="SignupMenuView" id="ceC-B4-oGq" customClass="SignupViewController" customModule="HotSpot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupViewController" title="SignupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ceC-B4-oGq" customClass="SignupViewController" customModule="HotSpot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m3V-bZ-9I0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,7 +191,7 @@
         <!--LoginMenuView-->
         <scene sceneID="nZi-gm-6b8">
             <objects>
-                <viewController title="LoginMenuView" id="cYg-7Y-AOu" customClass="LoginViewController" customModule="HotSpot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="LoginMenuView" id="cYg-7Y-AOu" customClass="LoginViewController" customModule="HotSpot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BFv-Pn-gSy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -781,9 +781,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0YN-Nk-moX"/>
-        <segue reference="FfY-bY-TcU"/>
+        <segue reference="pKf-mg-OBI"/>
         <segue reference="ffF-rE-BdV"/>
-        <segue reference="rfs-9D-64e"/>
+        <segue reference="nX3-TF-ycI"/>
     </inferredMetricsTieBreakers>
 </document>

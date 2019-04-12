@@ -24,7 +24,9 @@ class LoginViewController: UIViewController {
      * Calls Firebase Auth to check for valid login
      */
     @IBAction func loginButtonPress(_ sender: Any) {
-        if userEmail == nil {
+        if userEmail.text == "" {
+            self.userEmail.layer.borderColor = UIColor.red.cgColor
+            self.userEmail.layer.borderWidth = 1.0
             print("ERROR")
             return
         }
