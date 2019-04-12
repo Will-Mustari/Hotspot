@@ -38,9 +38,6 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Initialize Firestore
-        let database = Firestore.firestore()
-        
         //Initialize text fields
         updateRatingLabel();
         barNameLabel.text = barName;
@@ -87,9 +84,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         let rating = Double(tempRating)!
         let vibe = selectedVibes
         
-        var ref: DocumentReference? = nil
-        
-        ref = db.collection("Ratings").addDocument(data: [
+        db.collection("Ratings").addDocument(data: [
             "barName": barName,
             "review": review ?? "",
             "rating": rating,

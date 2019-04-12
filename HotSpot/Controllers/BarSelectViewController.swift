@@ -32,10 +32,6 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         
-        //Initialize database
-        let database = Firestore.firestore()
-        
-        
         barNameLabel.text = barName
         addressLabel.text = address
         overallRatingLabel.text = "Rating: " + String(format: "%.1f", (overallRating / Double(numRatings)))
