@@ -26,7 +26,7 @@ struct BarInformation {
         db.collection("Reviews").whereField("barName", isEqualTo: barName).getDocuments { (querySnapshot, error) in
             if error != nil{
                 //handle error
-                print(error?.localizedDescription as Any)
+                print(error?.localizedDescription)
             }else{
                 var reviews:[ReviewInformation] = []
                 for document in querySnapshot!.documents{
@@ -36,7 +36,7 @@ struct BarInformation {
                     //TODO: Calculate vibes
                     //let vibeRating =
                     
-                    let reviewInfo = ReviewInformation.init(review: review, rating: overallRating, vibes: [], barName: barName, userId: user)
+                    var reviewInfo = ReviewInformation.init(review: review, rating: overallRating, vibes: [], barName: barName, userId: user)
                     reviews.append(reviewInfo)
                 }
                 completion(reviews)
@@ -50,7 +50,7 @@ func loadBars(completion: @escaping ([BarInformation]) -> Void){
     db.collection("Bars").getDocuments { (querySnapshot, error) in
         if error != nil{
             //handle error
-            print(error?.localizedDescription as Any)
+            print(error?.localizedDescription)
         }else{
         var bars:[BarInformation] = []
         for document in querySnapshot!.documents{
