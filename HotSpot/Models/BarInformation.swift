@@ -62,6 +62,10 @@ func loadBars(completion: @escaping ([BarInformation]) -> Void){
             
             //TODO: Get location from geopoint
             //let location =
+            let location:[Double] = document.data()["location"] as! [Double]
+            let latitude = location[0]
+            let longitude = location[1]
+            print("LOCATION: [\(latitude) , \(longitude)]")
             
             let overallRating = document.data()["overallRating"] as! Double
             print("OVERALL RATING: \(overallRating)")
@@ -72,7 +76,7 @@ func loadBars(completion: @escaping ([BarInformation]) -> Void){
             //TODO: Change the vibe rating to a collection and add calculation of vibe
             let vibeRating = document.data()["vibeRating"] as! String
             print("VIBE RATING: \(vibeRating)")
-            let bar = BarInformation.init(uniqueBarNameID: barName, vibeRating: vibeRating, overallRating: overallRating, locationLatitude: 0, locationLongitude: 0, address: address, popularity: popularity, numRatings: numRatings)
+            let bar = BarInformation.init(uniqueBarNameID: barName, vibeRating: vibeRating, overallRating: overallRating, locationLatitude: latitude, locationLongitude: longitude, address: address, popularity: popularity, numRatings: numRatings)
             bars.append(bar)
         }
         completion(bars)
