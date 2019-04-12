@@ -28,6 +28,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     var numRatings = 0
     var ratings:[ReviewInformation] = []
     var reviews:[String] = []
+    var bars:[BarInformation] = []
     
     
     override func viewDidLoad() {
@@ -109,6 +110,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
             newView.popularity = popularity
             newView.overallRating = overallRating
             newView.numRatings = numRatings
+            newView.ratings = ratings
         }
         
     }
