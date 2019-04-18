@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import MapKit
 
 class BarSelectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -33,17 +34,26 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         
+        //Set labels to appropriate values
         barNameLabel.text = barName
         addressLabel.text = address
         overallRatingLabel.text = "Rating: " + String(format: "%.1f", (overallRating / Double(numRatings)))
         currentVibeLabel.text = "Current Vibe: " + currentVibe
         popularityLabel.text = "Current Popularity: " + String(popularity)
         
+        //Add formatting to UI
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+        let underlineAddressString = NSAttributedString(string: address, attributes: underlineAttribute)
+
+        addressLabel.attributedText = underlineAddressString
+        
+        //Load Reviews from firebase
         loadReviews { (loadedRatings) in
             self.ratings = loadedRatings
             self.reviewTable.reloadData()
         }
         
+        //set delegates
         reviewTable.delegate = self
         reviewTable.dataSource = self
         reviewTable.reloadData()
@@ -51,9 +61,59 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         print("ratings: \(ratings)")
         
-        // Do any additional setup after loading the view.
+        //define selector for the address to do function
+        let tapAddressLabel = UITapGestureRecognizer(target: self, action: #selector(BarSelectViewController.tapAddress))
+        addressLabel.addGestureRecognizer(tapAddressLabel)
     }
     
+    @objc func tapAddress(sender: UITapGestureRecognizer) {
+        print("Rerouting to AppleMaps application to \(address)")
+        
+        addressLabel.textColor = UIColor.red
+        
+        coordinates(forAddress: address) {
+            (location) in
+            guard let location = location else {
+                // Handle error here.
+                return
+            }
+            self.openMapForPlace(lat: location.latitude, long: location.longitude, placeName: self.barName)
+        }
+    }
+    
+    public func openMapForPlace(lat:Double = 0, long:Double = 0, placeName:String = "") {
+        let latitude: CLLocationDegrees = lat
+        let longitude: CLLocationDegrees = long
+        
+        let regionDistance:CLLocationDistance = 100
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = placeName
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    func coordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) {
+            (placemarks, error) in
+            guard error == nil else {
+                print("Geocoding error: \(error!)")
+                completion(nil)
+                return
+            }
+            completion(placemarks?.first?.location?.coordinate)
+        }
+    }
+    /*
+     * Table view stuff
+     *
+    */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ratings.count
     }
@@ -66,7 +126,17 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if(rating.review != "" && !rating.review.isEmpty) {
             cell.tableTextLabel.text = rating.review
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let myString = formatter.string(from: rating.timeStamp)
+            let myDate = formatter.date(from: myString)
+            formatter.dateFormat = "MMMM.dd, yy h:mm a"
+            
+            cell.dateTextLabel.text = "  Review from: \(formatter.string(from: myDate!))"
         }
+        
+        
         
         return cell
     }
@@ -87,10 +157,14 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
                         let userID = document.data()["userID"] as! String
                         let vibes = document.data()["vibes"] as! [String]
                         
-                        let newRating = ReviewInformation.init(review: review,rating: rating,vibes: vibes,barName: barName,userId: userID)
-                        print(newRating.barName)
-                        print(newRating.review)
-
+                        //Must convert the timestamp into a date
+                        let timeStamp = document.data()["timeStamp"] as! Timestamp
+                        let date = timeStamp.dateValue()
+                        
+                        
+                        print("Bar Name: \(barName)\nReview: \(review)\nRating: \(rating)\nVibes: \(vibes)\nTime Stamp: \(date)")
+                        
+                        let newRating = ReviewInformation.init(review: review,rating: rating,vibes: vibes,barName: barName,userId: userID, timeStamp: date)
                         
                         rateArray.append(newRating)
                     }

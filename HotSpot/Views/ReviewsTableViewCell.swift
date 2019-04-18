@@ -9,5 +9,6 @@
 import UIKit
 
 class ReviewsTableViewCell: UITableViewCell {
+    @IBOutlet weak var dateTextLabel: UILabel!
     @IBOutlet weak var tableTextLabel: UILabel!
 }

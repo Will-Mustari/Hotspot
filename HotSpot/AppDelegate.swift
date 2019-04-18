@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-import GoogleMaps
-import GooglePlaces
+//import GoogleMaps
+//import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

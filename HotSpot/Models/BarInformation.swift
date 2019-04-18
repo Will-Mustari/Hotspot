@@ -34,8 +34,11 @@ struct BarInformation {
                         let barName = document.data()["barName"] as! String
                         let userID = document.data()["userID"] as! String
                         let vibes = document.data()["vibes"] as! [String]
+                        let timeStamp = document.data()["vibes"] as! Timestamp
                         
-                        let newRating = ReviewInformation.init(review: review,rating: rating,vibes: vibes,barName: barName,userId: userID)
+                        let date = timeStamp.dateValue()
+                        
+                        let newRating = ReviewInformation.init(review: review,rating: rating,vibes: vibes,barName: barName,userId: userID, timeStamp: date)
                         print(newRating.barName)
                         print(newRating.review)
                         

@@ -9,10 +9,11 @@
 import Foundation
 
 struct ReviewInformation {
-    //TODO: Set up review variables
+    //Set up review variables
     var review:String
     var rating: Double
     var vibes:[String]
     var barName:String
     var userId:String
+    var timeStamp:Date
 }
