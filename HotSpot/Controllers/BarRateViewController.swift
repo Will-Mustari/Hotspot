@@ -22,7 +22,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
     var overallRating:Double = 0
     var numRatings = 0
     //Vibe list
-    let vibeArray:[String] = ["CheapDrinks", "Chill", "DJ", "Party"];
+    let vibeArray:[String] = ["Cheap", "Chill", "DJ", "Party", "Dance Floor", "Good Music", "Loud", "Packed", "Sports"];
     //Selected list of vibes
     var selectedVibes:[String] = [];
     var ratings:[ReviewInformation] = []
@@ -122,6 +122,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         //cell.layer.borderColor = UIColor.black.cgColor
         //cell.layer.borderWidth = 2
         cell.isSelected = true
+        cell.changeImage(imageName: vibeArray[indexPath.row] + "-selected.png")
 
         selectedVibes.append(vibeArray[indexPath.row])
         
@@ -134,13 +135,14 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         
         //cell.layer.borderColor = UIColor.clear.cgColor
         //cell.layer.borderWidth = 2
+        cell.changeImage(imageName: vibeArray[indexPath.row] + ".png")
         cell.isSelected = false
     }
    
     //Populate cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VibesCollectionViewCell;
-        cell.cellImage.image = UIImage(named: vibeArray[indexPath.row] + ".jpg");
+        cell.cellImage.image = UIImage(named: vibeArray[indexPath.row] + ".png");
         
         
         if(cell.isSelected) {
@@ -151,6 +153,7 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             //cell.layer.borderColor = UIColor.clear.cgColor
             //cell.layer.borderWidth = 2
             cell.isSelected = false
+
         }
         
         return cell;

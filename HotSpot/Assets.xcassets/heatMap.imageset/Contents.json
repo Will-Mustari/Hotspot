@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Chill.png",
+      "filename" : "heatMap.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "heatMap@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "heatMap@3x.png",
       "scale" : "3x"
     }
   ],

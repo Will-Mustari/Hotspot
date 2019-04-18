@@ -66,6 +66,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         addressLabel.addGestureRecognizer(tapAddressLabel)
     }
     
+    //Tap the address link and be re-routed to apple maps for directions
     @objc func tapAddress(sender: UITapGestureRecognizer) {
         print("Rerouting to AppleMaps application to \(address)")
         
@@ -81,6 +82,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //Open apple maps with given lat and long
     public func openMapForPlace(lat:Double = 0, long:Double = 0, placeName:String = "") {
         let latitude: CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
@@ -98,6 +100,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         mapItem.openInMaps(launchOptions: options)
     }
     
+    //Get coordinates from address to pass into the openMap function
     func coordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {

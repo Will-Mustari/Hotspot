@@ -341,7 +341,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ocf-Ll-xUY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="User Profile" id="O95-VD-x2E"/>
+                    <tabBarItem key="tabBarItem" title="User Profile" image="userProfile" id="O95-VD-x2E"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -421,7 +421,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xFx-Q5-9O4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Heat Map" id="nZw-i4-kCW"/>
+                    <tabBarItem key="tabBarItem" title="Heat Map" image="heatMap" id="nZw-i4-kCW"/>
                     <connections>
                         <outlet property="mapView" destination="ffE-bu-rf9" id="fSW-Ie-TkW"/>
                         <segue destination="fbS-ZA-2AT" kind="show" identifier="mapToBarSelect" id="ePa-J7-rna"/>
@@ -522,7 +522,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lTU-JD-5xW"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Top Bars" id="4Rg-QG-XMm"/>
+                    <tabBarItem key="tabBarItem" title="Top Bars" image="barFeed" id="4Rg-QG-XMm"/>
                     <connections>
                         <outlet property="barTableView" destination="41e-Wc-ScC" id="nfx-aM-wLC"/>
                         <outlet property="sortBy" destination="Phd-Cr-pZa" id="f5J-Su-9f2"/>
@@ -707,7 +707,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Rating&gt; out of 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cm-Rj-EdO">
-                                <rect key="frame" x="0.0" y="129" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="114" width="414" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="aag-C2-fg5"/>
                                 </constraints>
@@ -716,7 +716,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="oT4-OZ-ymo">
-                                <rect key="frame" x="41" y="174" width="344" height="41"/>
+                                <rect key="frame" x="41" y="154" width="344" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="9Ii-b9-sdf"/>
                                 </constraints>
@@ -727,11 +727,11 @@
                                 </connections>
                             </slider>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Review Here 127 Max chars" translatesAutoresizingMaskIntoConstraints="NO" id="Pkk-CZ-Ivg">
-                                <rect key="frame" x="10" y="644" width="394" height="128"/>
+                                <rect key="frame" x="10" y="672" width="394" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="textView"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="thT-1E-Xut"/>
+                                    <constraint firstAttribute="height" constant="100" id="thT-1E-Xut"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -739,25 +739,25 @@
                                     <outlet property="delegate" destination="BZM-24-LnF" id="nec-Np-ElA"/>
                                 </connections>
                             </textView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-PO-GkR">
-                                <rect key="frame" x="0.0" y="224" width="414" height="390"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-PO-GkR">
+                                <rect key="frame" x="0.0" y="194" width="414" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uXV-tR-Im0">
-                                    <size key="itemSize" width="125" height="125"/>
+                                    <size key="itemSize" width="110" height="110"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="7a4-xo-pwc" customClass="VibesCollectionViewCell" customModule="HotSpot" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pEe-3Q-hHm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -778,7 +778,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Char Count: &lt;CurrLength&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="il6-AR-tmp">
-                                <rect key="frame" x="0.0" y="622" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="650" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -823,7 +823,7 @@
                             <constraint firstItem="B89-O4-jRG" firstAttribute="leading" secondItem="dX0-Yj-a5j" secondAttribute="leading" constant="75" id="UaY-e6-gs6"/>
                             <constraint firstItem="dX0-Yj-a5j" firstAttribute="trailing" secondItem="NDg-PO-GkR" secondAttribute="trailing" id="V89-di-yqd"/>
                             <constraint firstItem="HHv-wo-R0W" firstAttribute="top" secondItem="dX0-Yj-a5j" secondAttribute="top" id="Z8z-zp-V45"/>
-                            <constraint firstItem="oT4-OZ-ymo" firstAttribute="top" secondItem="2cm-Rj-EdO" secondAttribute="bottom" constant="5" id="bAW-TD-QXq"/>
+                            <constraint firstItem="oT4-OZ-ymo" firstAttribute="top" secondItem="2cm-Rj-EdO" secondAttribute="bottom" id="bAW-TD-QXq"/>
                             <constraint firstItem="Pkk-CZ-Ivg" firstAttribute="leading" secondItem="dX0-Yj-a5j" secondAttribute="leading" constant="10" id="fg2-El-9GP"/>
                             <constraint firstItem="il6-AR-tmp" firstAttribute="top" secondItem="NDg-PO-GkR" secondAttribute="bottom" constant="8" id="hev-C6-c03"/>
                             <constraint firstItem="Pkk-CZ-Ivg" firstAttribute="top" secondItem="NDg-PO-GkR" secondAttribute="bottom" constant="30" id="huM-Xj-JPC"/>
@@ -831,8 +831,8 @@
                             <constraint firstItem="mVw-TT-Ptt" firstAttribute="centerY" secondItem="HHv-wo-R0W" secondAttribute="centerY" id="krr-XL-RvV"/>
                             <constraint firstItem="dX0-Yj-a5j" firstAttribute="trailing" secondItem="mVw-TT-Ptt" secondAttribute="trailing" constant="357" id="laH-5I-Y6f"/>
                             <constraint firstItem="mVw-TT-Ptt" firstAttribute="top" secondItem="dX0-Yj-a5j" secondAttribute="top" constant="14" id="pXw-JI-Dt6"/>
-                            <constraint firstItem="NDg-PO-GkR" firstAttribute="top" secondItem="oT4-OZ-ymo" secondAttribute="bottom" constant="10" id="q3s-yC-03H"/>
-                            <constraint firstItem="2cm-Rj-EdO" firstAttribute="top" secondItem="HHv-wo-R0W" secondAttribute="bottom" constant="20" id="rxM-A8-b8E"/>
+                            <constraint firstItem="NDg-PO-GkR" firstAttribute="top" secondItem="oT4-OZ-ymo" secondAttribute="bottom" id="q3s-yC-03H"/>
+                            <constraint firstItem="2cm-Rj-EdO" firstAttribute="top" secondItem="HHv-wo-R0W" secondAttribute="bottom" constant="5" id="rxM-A8-b8E"/>
                             <constraint firstItem="dX0-Yj-a5j" firstAttribute="trailing" secondItem="B89-O4-jRG" secondAttribute="trailing" constant="75" id="sly-7U-CbD"/>
                             <constraint firstItem="dX0-Yj-a5j" firstAttribute="trailing" secondItem="2cm-Rj-EdO" secondAttribute="trailing" id="t2c-mg-nEE"/>
                             <constraint firstItem="2cm-Rj-EdO" firstAttribute="leading" secondItem="dX0-Yj-a5j" secondAttribute="leading" id="xk8-0S-Fww"/>
@@ -876,9 +876,14 @@
             <point key="canvasLocation" x="806" y="149"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="barFeed" width="25" height="25"/>
+        <image name="heatMap" width="25" height="25"/>
+        <image name="userProfile" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FfY-bY-TcU"/>
-        <segue reference="r2B-7G-hKz"/>
+        <segue reference="7fR-XZ-7Ol"/>
+        <segue reference="ffF-rE-BdV"/>
         <segue reference="rwM-oo-nal"/>
         <segue reference="T7p-l2-68p"/>
         <segue reference="rfs-9D-64e"/>

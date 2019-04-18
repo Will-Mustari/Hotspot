@@ -15,11 +15,12 @@ class VibesCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if(isSelected == true) {
-                self.layer.borderColor = UIColor.black.cgColor
-                self.layer.borderWidth = 2
+                //self.layer.borderColor = UIColor.black.cgColor
+                //self.layer.borderWidth = 2
+                
             } else {
-                self.layer.borderColor = UIColor.clear.cgColor
-                self.layer.borderWidth = 2
+                //self.layer.borderColor = UIColor.clear.cgColor
+                //self.layer.borderWidth = 2
             }
         }
     }
@@ -28,4 +29,7 @@ class VibesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         isSelected = false
     }*/
+    func changeImage(imageName:String) {
+        cellImage.image = UIImage(named: imageName);
+    }
 }
