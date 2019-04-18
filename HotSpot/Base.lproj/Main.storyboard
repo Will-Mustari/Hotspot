@@ -321,15 +321,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csr-ml-0eq">
-                                <rect key="frame" x="75" y="673" width="264" height="60"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="To reset your password, click the button below and we'll send you an email to change your passsword" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4d-EY-MZD">
+                                <rect key="frame" x="20" y="526" width="374" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOn-83-NZM">
+                                <rect key="frame" x="75" y="584" width="264" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Settings">
+                                <state key="normal" title="Reset Password">
                                     <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ITD-QZ-MNL" kind="show" id="nOD-uO-urO"/>
+                                    <action selector="ResetButtonPressed:" destination="pkb-1N-SsF" eventType="touchUpInside" id="6Kp-Sy-zDq"/>
+                                    <action selector="resetPassword:" destination="rTE-UX-Kj5" eventType="touchUpInside" id="BWg-WS-Eoj"/>
+                                    <segue destination="cYg-7Y-AOu" kind="show" id="T7p-l2-68p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eco-bS-DXA">
+                                <rect key="frame" x="75" y="714" width="264" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Delete Account">
+                                    <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ResetButtonPressed:" destination="pkb-1N-SsF" eventType="touchUpInside" id="xWp-sp-wRb"/>
+                                    <action selector="deleteAccount:" destination="rTE-UX-Kj5" eventType="touchUpInside" id="qpl-cU-q9R"/>
+                                    <action selector="resetPassword:" destination="rTE-UX-Kj5" eventType="touchUpInside" id="8Mc-dE-fhq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -366,25 +388,6 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <segue destination="rTE-UX-Kj5" kind="show" id="bTV-SR-BqQ"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="To reset your password, click the button below and we'll send you an email to change your passsword" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4d-EY-MZD">
-                                <rect key="frame" x="20" y="138" width="374" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOn-83-NZM">
-                                <rect key="frame" x="75" y="264" width="264" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Reset &amp; Logout">
-                                    <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="ResetButtonPressed:" destination="pkb-1N-SsF" eventType="touchUpInside" id="6Kp-Sy-zDq"/>
-                                    <segue destination="cYg-7Y-AOu" kind="show" id="T7p-l2-68p"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -884,7 +887,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="7fR-XZ-7Ol"/>
         <segue reference="ffF-rE-BdV"/>
-        <segue reference="rwM-oo-nal"/>
+        <segue reference="bTV-SR-BqQ"/>
         <segue reference="T7p-l2-68p"/>
         <segue reference="rfs-9D-64e"/>
     </inferredMetricsTieBreakers>
