@@ -14,4 +14,6 @@ class CategorizedFeedTableViewCell: UITableViewCell{
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var overallRating: UILabel!
     @IBOutlet weak var vibeRating: UILabel!
+    @IBOutlet weak var imageFire: UIImageView!
+    
 }

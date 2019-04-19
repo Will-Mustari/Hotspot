@@ -38,6 +38,24 @@ class CategorizedFeedViewController: UIViewController, UITableViewDelegate, UITa
             cell.overallRating.text = "Rating: " + String(format: "%.1f", actualRating)
         }
         
+        if(bar.popularity > 50) {
+            cell.imageFire.image = UIImage(named: "fire7.png")
+        } else if(bar.popularity > 35) {
+            cell.imageFire.image = UIImage(named: "fire6.png")
+        } else if(bar.popularity > 25) {
+            cell.imageFire.image = UIImage(named: "fire5.png")
+        } else if(bar.popularity > 15) {
+            cell.imageFire.image = UIImage(named: "fire4.png")
+        } else if(bar.popularity > 10) {
+            cell.imageFire.image = UIImage(named: "fire3.png")
+        } else if(bar.popularity > 5) {
+            cell.imageFire.image = UIImage(named: "fire2.png")
+        } else if(bar.popularity > 2) {
+            cell.imageFire.image = UIImage(named: "fire1.png")
+        } else {
+            cell.imageFire.image = UIImage(named: "fire0.png")
+        }
+
         cell.vibeRating.text = "Vibes: " + bar.vibeRating
         
         return cell
