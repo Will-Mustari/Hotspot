@@ -10,20 +10,37 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class HeatmapViewController: UIViewController {
+class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var bars:[BarInformation] = []
+    var selectedBar = BarInformation.init(uniqueBarNameID: "", vibeRating: "", overallRating: 0, locationLatitude: 0, locationLongitude: 0, address: "", popularity: 0, numRatings: 0)
 
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
     let regionM: Double = 2500
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         checkLocationServices()
         getBars()
     }
+    
+    //Handle selection of bar on the map
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("clicked on annotation!")
+        if let annotationTitle = view.annotation?.title {
+            print(annotationTitle ?? "title not found")
+            if let foundIndex = bars.map({$0.uniqueBarNameID}).firstIndex(of: annotationTitle){
+                selectedBar = bars[foundIndex]
+            }
+            
+            self.performSegue(withIdentifier: "mapToBarSelect", sender: self)
+        }
+    }
+    
     
     func setupLocationManager() {
         locationManager.delegate = self
@@ -78,7 +95,6 @@ class HeatmapViewController: UIViewController {
     }
     
     func makeMapPoints() {
-        print("test")
         print(bars)
         for bar in bars {
             var lat = 0.0
@@ -93,9 +109,6 @@ class HeatmapViewController: UIViewController {
             mapView.addAnnotation(barPoint)
         }
     }
-}
-
-extension HeatmapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
@@ -109,4 +122,16 @@ extension HeatmapViewController: CLLocationManagerDelegate {
         
         // brb
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let newView = segue.destination as? BarSelectViewController {
+            newView.barName = selectedBar.uniqueBarNameID
+            newView.address = selectedBar.address
+            newView.popularity = selectedBar.popularity
+            newView.overallRating = selectedBar.overallRating
+            newView.currentVibe = selectedBar.vibeRating
+            newView.numRatings = selectedBar.numRatings
+        }
+    }
 }
+

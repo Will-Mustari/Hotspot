@@ -21,12 +21,17 @@ class UserProfileViewController: UIViewController {
         emailLabel.text = Auth.auth().currentUser?.email
     }
     
+
     @IBAction func handleLogout(_ sender: UIBarButtonItem) {
         try! Auth.auth().signOut()
         //self.dismiss(animated: false, completion: nil)
-        exit(0)
+        self.performSegue(withIdentifier: "userProfileToSplash", sender: self)
     }
     
+    /*
+     * Sends and alert to the user to conform password reset
+     * Upon acceptance by user, will send the user an email to reset password
+     */
     @IBAction func resetPassword(_ sender: Any) {
         let alert = UIAlertController(title: "WAIT", message: "Are you sure that you want to reset your password?", preferredStyle: UIAlertController.Style.alert)
         
@@ -55,11 +60,13 @@ class UserProfileViewController: UIViewController {
             
             user?.delete { error in
                 if let error = error {
-                    print("user not delete properly")
+                    print("user not delete properly with error: \(error)")
                 } else {
                     print("user deleted")
                 }
             }
+            
+            self.performSegue(withIdentifier: "userProfileToSplash", sender: self)
         }))
         
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertAction.Style.default, handler: { (action) in

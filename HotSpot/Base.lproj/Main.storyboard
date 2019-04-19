@@ -336,9 +336,7 @@
                                     <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ResetButtonPressed:" destination="pkb-1N-SsF" eventType="touchUpInside" id="6Kp-Sy-zDq"/>
                                     <action selector="resetPassword:" destination="rTE-UX-Kj5" eventType="touchUpInside" id="BWg-WS-Eoj"/>
-                                    <segue destination="cYg-7Y-AOu" kind="show" id="T7p-l2-68p"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eco-bS-DXA">
@@ -349,7 +347,6 @@
                                     <color key="titleColor" red="0.8980392157" green="0.2426547054" blue="0.20264419219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ResetButtonPressed:" destination="pkb-1N-SsF" eventType="touchUpInside" id="xWp-sp-wRb"/>
                                     <action selector="deleteAccount:" destination="rTE-UX-Kj5" eventType="touchUpInside" id="qpl-cU-q9R"/>
                                     <action selector="resetPassword:" destination="rTE-UX-Kj5" eventType="touchUpInside" id="8Mc-dE-fhq"/>
                                 </connections>
@@ -368,37 +365,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailLabel" destination="DBU-iH-Lxn" id="yNZ-1d-Mkg"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="userProfileToSplash" id="hZC-6R-QyL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3c-FY-3Tk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1869.5652173913045" y="870.53571428571422"/>
-        </scene>
-        <!--User Settings View Controller-->
-        <scene sceneID="i9v-hc-jN0">
-            <objects>
-                <viewController id="ITD-QZ-MNL" customClass="UserSettingsViewController" customModule="HotSpot" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xom-BI-bp7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-oA-9j6">
-                                <rect key="frame" x="20" y="44" width="47" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="rTE-UX-Kj5" kind="show" id="bTV-SR-BqQ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="zr3-Rx-j3B"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpl-d5-9fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="pkb-1N-SsF" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="3027.536231884058" y="871.875"/>
         </scene>
         <!--HeatMapView-->
         <scene sceneID="NKc-5V-bce">
@@ -885,10 +857,8 @@
         <image name="userProfile" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7fR-XZ-7Ol"/>
-        <segue reference="ffF-rE-BdV"/>
-        <segue reference="bTV-SR-BqQ"/>
-        <segue reference="T7p-l2-68p"/>
-        <segue reference="rfs-9D-64e"/>
+        <segue reference="FfY-bY-TcU"/>
+        <segue reference="ePa-J7-rna"/>
+        <segue reference="hZC-6R-QyL"/>
     </inferredMetricsTieBreakers>
 </document>

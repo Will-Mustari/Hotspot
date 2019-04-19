@@ -37,7 +37,12 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         //Set labels to appropriate values
         barNameLabel.text = barName
         addressLabel.text = address
-        overallRatingLabel.text = "Rating: " + String(format: "%.1f", (overallRating / Double(numRatings)))
+        
+        var calcRating:Double = 0
+        if (numRatings > 0) {
+            calcRating = overallRating / Double(numRatings)
+        }
+        overallRatingLabel.text = "Rating: " + String(format: "%.1f", calcRating)
         currentVibeLabel.text = "Current Vibe: " + currentVibe
         popularityLabel.text = "Current Popularity: " + String(popularity)
         
@@ -59,7 +64,6 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         reviewTable.reloadData()
         print("ratings: \(ratings)")
         super.viewDidLoad()
-        print("ratings: \(ratings)")
         
         //define selector for the address to do function
         let tapAddressLabel = UITapGestureRecognizer(target: self, action: #selector(BarSelectViewController.tapAddress))
@@ -68,7 +72,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //Tap the address link and be re-routed to apple maps for directions
     @objc func tapAddress(sender: UITapGestureRecognizer) {
-        print("Rerouting to AppleMaps application to \(address)")
+        print("Rerouting to AppleMaps -> \(address)")
         
         addressLabel.textColor = UIColor.red
         
