@@ -92,18 +92,18 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             "vibes": vibe,
             "userID": Auth.auth().currentUser!.uid,
             "timeStamp": FieldValue.serverTimestamp()
-            
         ]) {err in
             if let err = err {
                 print("Error adding rating \(err)")
             } else {
                 print("Document added with ID: \ref!.documentID")
+                self.updateBar()
+                self.performSegue(withIdentifier: "rateSubmitted", sender: self)
             }
             
         }
         //Update the bar with new data
-        updateBar()
-        performSegue(withIdentifier: "rateSubmitted", sender: self)
+
         
     }
     
