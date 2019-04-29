@@ -15,6 +15,13 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userPasswordConfirm: UITextField!
     
+    
+    @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var passwordConfirmErrorLabel: UILabel!
+    
+    let MIN_PASS_LENGTH = 6
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -38,11 +45,28 @@ class SignupViewController: UIViewController {
             self.userEmail.layer.borderWidth = 1.0
             
             ////////TODO: ADD ERROR MESSAGE POPUP/////////
+            emailErrorLabel.text = "Invalid email!"
+            emailErrorLabel.isHidden = false
             
             print("Bad email!")
             return
         } else {
             userEmail.layer.borderColor = UIColor.clear.cgColor
+            emailErrorLabel.isHidden = true
+        }
+        
+        //Catch if password less than 6 chars
+        if password.count < MIN_PASS_LENGTH {
+            userPassword.layer.borderColor = UIColor.red.cgColor
+            userPassword.layer.borderWidth = 1.0
+            
+            passwordErrorLabel.text = "Password too short!"
+            passwordErrorLabel.isHidden = false
+            
+            print("Password too short")
+        } else {
+            userPassword.layer.borderColor = UIColor.clear.cgColor
+            passwordErrorLabel.isHidden = true
         }
 
         //Catch if password mismatch
@@ -53,12 +77,15 @@ class SignupViewController: UIViewController {
             userPasswordConfirm.layer.borderWidth = 1.0
             
             ///////TODO: ADD ERROR MESSAGE POPUP/////////
+            passwordConfirmErrorLabel.text = "Passwords do not match!"
+            passwordConfirmErrorLabel.isHidden = false
             
             print("Passwords do not match!")
             return
         } else {
             userPassword.layer.borderColor = UIColor.clear.cgColor
             userPasswordConfirm.layer.borderColor = UIColor.clear.cgColor
+            passwordConfirmErrorLabel.isHidden = true
         }
         
         //Create user if auth successful, otherwise throw error
@@ -68,6 +95,7 @@ class SignupViewController: UIViewController {
                 self.userPasswordConfirm.layer.borderColor = UIColor.clear.cgColor
                 
                 ///////TODO: ADD SUCCESS MESSAGE POPUP////////
+                
                 
                 print("User created!")
                 self.userEmail.text=""

@@ -29,6 +29,7 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
     var numRatings = 0
     var ratings:[ReviewInformation] = []
     var reviews:[String] = []
+    var reviewDates:[Date] = []
     var bars:[BarInformation] = []
     
     
@@ -55,6 +56,14 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
         //Load Reviews from firebase
         loadReviews { (loadedRatings) in
             self.ratings = loadedRatings
+            
+            for rating in self.ratings {
+                if(rating.review != "\"\"") {
+                    self.reviews.append(rating.review)
+                    self.reviewDates.append(rating.timeStamp)
+                }
+            }
+            
             self.reviewTable.reloadData()
         }
         
@@ -122,29 +131,26 @@ class BarSelectViewController: UIViewController, UITableViewDelegate, UITableVie
      *
     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ratings.count
+        return reviews.count
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell") as? ReviewsTableViewCell else {
             fatalError("Could not dequeue a cell")
         }
-        let rating = ratings[indexPath.row]
+        let review = reviews[indexPath.row]
+        let reviewDate = reviewDates[indexPath.row]
+
+        cell.tableTextLabel.text = review
         
-        if(rating.review != "" && !rating.review.isEmpty) {
-            cell.tableTextLabel.text = rating.review
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let myString = formatter.string(from: rating.timeStamp)
-            let myDate = formatter.date(from: myString)
-            formatter.dateFormat = "MMMM.dd, yy h:mm a"
-            
-            cell.dateTextLabel.text = "  Review from: \(formatter.string(from: myDate!))"
-        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let myString = formatter.string(from: reviewDate)
+        let myDate = formatter.date(from: myString)
+        formatter.dateFormat = "MMMM.dd, yyyy h:mm a"
         
-        
-        
+        cell.dateTextLabel.text = "  Review from: \(formatter.string(from: myDate!))"
+
         return cell
     }
 

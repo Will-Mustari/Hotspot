@@ -19,6 +19,11 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func pressEnterPassword(_ sender: Any) {
+        loginButtonPress(self)
+    }
+    
+    
     /*
      * ACTION - press of login button
      * Calls Firebase Auth to check for valid login
@@ -52,7 +57,7 @@ class LoginViewController: UIViewController {
                 
                 /////////TODO: ADD ERROR MESSAGE HERE//////////
                 
-                print("Error creating user: \(error!.localizedDescription)")
+                print("Error signing in: \(error!.localizedDescription)")
             }
         }
     }
