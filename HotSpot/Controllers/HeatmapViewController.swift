@@ -26,7 +26,7 @@ class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     var bars:[BarInformation] = []
     var selectedBar = BarInformation.init(uniqueBarNameID: "", vibeRating: "", overallRating: 0, locationLatitude: 0, locationLongitude: 0, address: "", popularity: 0, numRatings: 0)
-
+    
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
