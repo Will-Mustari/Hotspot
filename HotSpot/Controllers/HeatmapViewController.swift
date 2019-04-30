@@ -25,6 +25,7 @@ class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         super.viewDidLoad()
         mapView.delegate = self
         checkLocationServices()
+        centerViewOnUserLocation()
         getBars()
     }
     
@@ -68,7 +69,7 @@ class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         case .authorizedWhenInUse:
             // Map if permission
             mapView.showsUserLocation = true
-            centerViewOnUserLocation()
+            //centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             break
         case .denied:
