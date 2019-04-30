@@ -55,6 +55,9 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.collectionViewLayout = layout
         collectionView.allowsMultipleSelection = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         
         //Adding placeholder text
         reviewText.delegate = self
@@ -63,6 +66,22 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
         curCharCountLabel.text = "Character count: 0"
         
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    
     
     @IBAction func ratingValueChanged(_ sender: UISlider) {
         updateRatingLabel()
@@ -173,6 +192,11 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
      */
     //Creates the max char limit that is set
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText string: String) -> Bool {
+        if(string == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        
         curCharCountLabel.text = "Character count: " + String(reviewText.text.count)
     
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: string)
@@ -194,7 +218,9 @@ class BarRateViewController: UIViewController, UICollectionViewDataSource, UICol
             textView.textColor = UIColor.lightGray
             curCharCountLabel.text = "Character count: 0"
         }
+        
     }
+
     
     func updateBar() {
 
