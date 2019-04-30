@@ -35,9 +35,8 @@ class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             print(annotationTitle ?? "title not found")
             if let foundIndex = bars.map({$0.uniqueBarNameID}).firstIndex(of: annotationTitle){
                 selectedBar = bars[foundIndex]
+                self.performSegue(withIdentifier: "mapToBarSelect", sender: self)
             }
-            
-            self.performSegue(withIdentifier: "mapToBarSelect", sender: self)
         }
     }
     
