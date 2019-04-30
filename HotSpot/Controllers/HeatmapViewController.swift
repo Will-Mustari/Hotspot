@@ -10,6 +10,18 @@ import UIKit
 import MapKit
 import CoreLocation
 
+class customPin: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(pinTitle:String, pinSubtitle:String, location:CLLocationCoordinate2D) {
+        title = pinTitle
+        subtitle = pinSubtitle
+        coordinate = location
+    }
+}
+
 class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var bars:[BarInformation] = []
@@ -123,6 +135,78 @@ class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         // brb
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil;
+        }
+        
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "customannotation")
+        
+        for bar in bars {
+            if (bar.uniqueBarNameID == annotation.title) {
+                if(bar.popularity > 50) {
+                    let pinImage = UIImage(named: "fire7.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else if(bar.popularity > 35) {
+                    let pinImage = UIImage(named: "fire6.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else if(bar.popularity > 25) {
+                    let pinImage = UIImage(named: "fire5.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else if(bar.popularity > 15) {
+                    let pinImage = UIImage(named: "fire4.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else if(bar.popularity > 10) {
+                    let pinImage = UIImage(named: "fire3.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else if(bar.popularity > 5) {
+                    let pinImage = UIImage(named: "fire2.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else if(bar.popularity > 2) {
+                    let pinImage = UIImage(named: "fire1.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                } else {
+                    let pinImage = UIImage(named: "fire0.png")
+                    let size = CGSize(width: 100, height: 100)
+                    UIGraphicsBeginImageContext(size)
+                    pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                    annotationView.image = resizedImage
+                }
+            }
+        }
+        annotationView.canShowCallout = true
+        return annotationView
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let newView = segue.destination as? BarSelectViewController {
             newView.barName = selectedBar.uniqueBarNameID
@@ -134,4 +218,3 @@ class HeatmapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         }
     }
 }
-
