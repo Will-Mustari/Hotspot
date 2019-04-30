@@ -10,9 +10,6 @@ target 'HotSpot' do
       pod 'Firebase/Core'
       pod 'Firebase/Auth'
       pod 'Firebase/Firestore'
-      pod 'GooglePlaces'
-      pod 'GooglePlacePicker'
-      pod 'GoogleMaps'
   end
 common_pods
 
